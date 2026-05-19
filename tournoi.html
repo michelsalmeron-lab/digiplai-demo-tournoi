@@ -87,9 +87,9 @@
         @keyframes lightA { 0%, 5%, 40%, 100% { opacity: 0; } 10%, 35% { opacity: 1; } }
         @keyframes lightB { 0%, 55%, 90%, 100% { opacity: 0; } 60%, 85% { opacity: 1; } }
 
-        /* --- PRODUITS (+20%) --- */
-        .product-box { position: absolute; bottom: 25%; width: 25%; display: flex; flex-direction: column; align-items: center; z-index: 5; }
-        .product-img { max-height: 36vh; width: auto; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.8)); }
+        /* --- PRODUITS (responsive) --- */
+        .product-box { position: absolute; bottom: clamp(5%, 18%, 25%); width: 25%; display: flex; flex-direction: column; align-items: center; z-index: 5; }
+        .product-img { max-height: clamp(120px, 26vh, 36vh); width: auto; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.8)); }
         
         .box-left { left: 10%; animation: alternateZoomA 8s infinite ease-in-out; }
         .box-right { right: 10%; animation: alternateZoomB 8s infinite ease-in-out; }
@@ -98,8 +98,8 @@
         @keyframes alternateZoomB { 0%, 55%, 100% { transform: scale(1); } 60%, 85% { transform: scale(1.15); } }
 
         .challenger-label {
-            position: absolute; bottom: -130px; 
-            font-family: 'LeagueGothic', sans-serif; font-size: 1.8rem;
+            position: absolute; bottom: clamp(-80px, -12%, -130px);
+            font-family: 'LeagueGothic', sans-serif; font-size: clamp(0.9rem, 1.6vw, 1.8rem); line-height: 1.2;
             text-transform: uppercase; text-align: center;
             text-shadow: 1px 1px 0px #000, 2px 2px 5px rgba(0,0,0,0.8);
         }
@@ -108,7 +108,7 @@
 
         /* --- ÉTALON CENTRAL --- */
         .etalon-box { position: absolute; bottom: 5%; left: 50%; transform: translateX(-50%); text-align: center; }
-        .etalon-img { width: 198px; }
+        .etalon-img { width: clamp(80px, 14vw, 198px); }
         .etalon-text { font-family: 'LeagueGothic'; font-size: 1.5rem; text-transform: uppercase; color: white; margin-top: 5px; }
         .etalon-flavor { font-family: 'LeagueGothic'; color: var(--orange-lmdv); font-size: 1.8rem; text-transform: uppercase; margin-top: -5px; }
 
