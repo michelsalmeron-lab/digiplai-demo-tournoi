@@ -28,14 +28,14 @@
         /* --- TITRE & SOUS-TITRE (+20% & SYNCHRO) --- */
         .title-group {
             position: absolute;
-            top: 40px; width: 100%;
+            top: clamp(15px, 2.5vh, 40px); width: 100%;
             display: flex; flex-direction: column; align-items: center;
             pointer-events: none;
         }
 
         .main-title {
             font-family: 'LeagueGothic', sans-serif;
-            font-size: clamp(3rem, 12vw, 10.2rem);
+            font-size: clamp(2rem, 8vw, 10.2rem);
             text-transform: uppercase;
             margin: 0; white-space: nowrap;
             text-shadow: 2px 2px 15px rgba(0,0,0,0.7);
