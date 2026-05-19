@@ -35,7 +35,7 @@
 
         .main-title {
             font-family: 'LeagueGothic', sans-serif;
-            font-size: 10.2rem;
+            font-size: clamp(3rem, 12vw, 10.2rem);
             text-transform: uppercase;
             margin: 0; white-space: nowrap;
             text-shadow: 2px 2px 15px rgba(0,0,0,0.7);
@@ -54,7 +54,7 @@
 
         .sub-title {
             font-family: 'Poppins-Light', sans-serif;
-            font-size: 1.7rem;
+            font-size: clamp(1rem, 2.5vw, 1.7rem);
             white-space: nowrap; margin-top: -10px;
             opacity: 0;
             animation: neonFlicker 10s infinite step-end;
