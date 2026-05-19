@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duel de Vape - LMDV</title>
+    <style>
+        @font-face { font-family: 'LeagueGothic'; src: url('LeagueGothic-Regular-VariableFont_wdth.ttf'); }
+        @font-face { font-family: 'Poppins'; src: url('Poppins-Regular.ttf'); }
+        @font-face { font-family: 'Poppins-Light'; src: url('Poppins-Light.ttf'); }
+
+        :root { 
+            --orange-lmdv: #e67e22; 
+            --blue-vape: #3498db; 
+            --red-vape: #e74c3c; 
+        }
+
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #000; font-family: 'Poppins', sans-serif; color: white; }
+
+        .main-container {
+            position: relative;
+            width: 100vw; height: 100vh;
+            background: url('DUEL DE VAPE.jpg') no-repeat center center;
+            background-size: cover;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        /* --- TITRE & SOUS-TITRE (+20% & SYNCHRO) --- */
+        .title-group {
+            position: absolute;
+            top: 40px; width: 100%;
+            display: flex; flex-direction: column; align-items: center;
+            pointer-events: none;
+        }
+
+        .main-title {
+            font-family: 'LeagueGothic', sans-serif;
+            font-size: 10.2rem;
+            text-transform: uppercase;
+            margin: 0; white-space: nowrap;
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.7);
+            animation: sequenceTitle 10s infinite ease-in-out;
+        }
+
+        @keyframes sequenceTitle {
+            0% { transform: translateX(-120vw); opacity: 0; }
+            10%, 85% { transform: translateX(0); opacity: 1; }
+            15%, 17%, 19% { transform: translate(2px, 1px); }
+            16%, 18%, 20% { transform: translate(-2px, -1px); }
+            45%, 55% { transform: scale(1); }
+            50% { transform: scale(1.1); text-shadow: 0 0 30px var(--orange-lmdv); }
+            95%, 100% { transform: translateX(120vw); opacity: 0; }
+        }
+
+        .sub-title {
+            font-family: 'Poppins-Light', sans-serif;
+            font-size: 1.7rem;
+            white-space: nowrap; margin-top: -10px;
+            opacity: 0;
+            animation: neonFlicker 10s infinite step-end;
+        }
+
+        @keyframes neonFlicker {
+            0%, 12%, 88%, 100% { opacity: 0; }
+            13%, 15%, 18%, 20%, 85% { 
+                opacity: 1; 
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--orange-lmdv); 
+            }
+            14%, 16% { opacity: 0; }
+        }
+
+        /* --- LUMIÈRE POURSUITE (SPOTLIGHT) --- */
+        .spotlight {
+            position: absolute;
+            top: -100%; left: 50%;
+            width: 600px; height: 800px;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 70%);
+            clip-path: polygon(45% 0%, 55% 0%, 100% 100%, 0% 100%);
+            pointer-events: none;
+            opacity: 0;
+            z-index: 2;
+        }
+
+        .spot-left { transform: translateX(-140%) rotate(-15deg); animation: lightA 8s infinite ease-in-out; }
+        .spot-right { transform: translateX(40%) rotate(15deg); animation: lightB 8s infinite ease-in-out; }
+
+        @keyframes lightA { 0%, 5%, 40%, 100% { opacity: 0; } 10%, 35% { opacity: 1; } }
+        @keyframes lightB { 0%, 55%, 90%, 100% { opacity: 0; } 60%, 85% { opacity: 1; } }
+
+        /* --- PRODUITS (+20%) --- */
+        .product-box { position: absolute; bottom: 25%; width: 25%; display: flex; flex-direction: column; align-items: center; z-index: 5; }
+        .product-img { max-height: 36vh; width: auto; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.8)); }
+        
+        .box-left { left: 10%; animation: alternateZoomA 8s infinite ease-in-out; }
+        .box-right { right: 10%; animation: alternateZoomB 8s infinite ease-in-out; }
+
+        @keyframes alternateZoomA { 0%, 45%, 100% { transform: scale(1); } 10%, 35% { transform: scale(1.15); } }
+        @keyframes alternateZoomB { 0%, 55%, 100% { transform: scale(1); } 60%, 85% { transform: scale(1.15); } }
+
+        .challenger-label {
+            position: absolute; bottom: -130px; 
+            font-family: 'LeagueGothic', sans-serif; font-size: 1.8rem;
+            text-transform: uppercase; text-align: center;
+            text-shadow: 1px 1px 0px #000, 2px 2px 5px rgba(0,0,0,0.8);
+        }
+        .box-left .name-highlight { color: var(--blue-vape); }
+        .box-right .name-highlight { color: var(--red-vape); }
+
+        /* --- ÉTALON CENTRAL --- */
+        .etalon-box { position: absolute; bottom: 5%; left: 50%; transform: translateX(-50%); text-align: center; }
+        .etalon-img { width: 198px; }
+        .etalon-text { font-family: 'LeagueGothic'; font-size: 1.5rem; text-transform: uppercase; color: white; margin-top: 5px; }
+        .etalon-flavor { font-family: 'LeagueGothic'; color: var(--orange-lmdv); font-size: 1.8rem; text-transform: uppercase; margin-top: -5px; }
+
+        /* --- BOUTONS --- */
+        .vote-btn {
+            position: absolute; top: 32%; padding: 12px 30px; border-radius: 50px;
+            font-family: 'LeagueGothic'; font-size: 1.8rem; color: white;
+            text-transform: uppercase; cursor: pointer; border: none; z-index: 10;
+        }
+        .btn-a { left: 4.5%; background-color: var(--blue-vape); animation: pulseA 8s infinite; }
+        .btn-b { right: 4.5%; background-color: var(--red-vape); animation: pulseB 8s infinite; }
+        @keyframes pulseA { 0%, 45%, 100% { transform: scale(1); } 10%, 35% { transform: scale(1.1); box-shadow: 0 0 20px white; } }
+        @keyframes pulseB { 0%, 55%, 100% { transform: scale(1); } 60%, 85% { transform: scale(1.1); box-shadow: 0 0 20px white; } }
+
+        /* --- MODALES --- */
+        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); justify-content: center; align-items: center; }
+        .modal-content { background: #111; padding: 35px; border-radius: 25px; width: 85%; max-width: 550px; border: 2px solid var(--orange-lmdv); text-align: center; }
+        input, textarea { width: 100%; padding: 12px; margin-bottom: 10px; background: #222; border: 1px solid #444; border-radius: 10px; color: white; box-sizing: border-box; }
+        .submit-btn { background: var(--orange-lmdv); color: white; border: none; padding: 14px; border-radius: 10px; font-family: 'LeagueGothic'; font-size: 2rem; cursor: pointer; width: 100%; text-transform: uppercase; }
+        .legal-link { position: absolute; bottom: 15px; right: 25px; font-size: 0.75rem; color: rgba(255,255,255,0.3); text-decoration: underline; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="spotlight spot-left"></div>
+        <div class="spotlight spot-right"></div>
+
+        <div class="title-group">
+            <h1 class="main-title">Duel de Vape</h1>
+            <p class="sub-title">donnez nous votre verdict saveur... et Tentez de remporter le Kit !</p>
+        </div>
+
+        <button class="vote-btn btn-a" onclick="openVote('Vilter Max')">Voter pour A</button>
+        <button class="vote-btn btn-b" onclick="openVote('Nexlim Pro')">Voter pour B</button>
+
+        <div class="product-box box-left">
+            <img src="Vilter_max.png" class="product-img">
+            <div class="challenger-label"><span class="name-highlight">Challenger A</span><br>pod Vilter Max<br>Aspire</div>
+        </div>
+
+        <div class="product-box box-right">
+            <img src="Nexlimpro.png" class="product-img">
+            <div class="challenger-label"><span class="name-highlight">Challenger B</span><br>Pod Nexlim Pro<br>Oxva</div>
+        </div>
+
+        <div class="etalon-box">
+            <img src="Fruits_des_Bois_10ml_00mg.png" class="etalon-img">
+            <div class="etalon-text">l'étalon LMDV</div>
+            <div class="etalon-flavor">Le Fruits des bois</div>
+        </div>
+
+        <a class="legal-link" onclick="toggleModal('reglementModal', true)">Règlement du jeu</a>
+    </div>
+
+    <div id="voteModal" class="modal">
+        <div class="modal-content">
+            <h2 id="voteTitle" style="font-family:'LeagueGothic'; font-size:3.5rem; color:var(--orange-lmdv); margin:0;">VOTE</h2>
+            <div style="background: rgba(230, 126, 34, 0.15); border: 1px dashed var(--orange-lmdv); padding: 10px; border-radius: 12px; margin: 15px 0; color: var(--orange-lmdv); font-size: 0.85rem;">
+                🚀 <strong>DOUBLE CHANCE :</strong> Laisse un avis pour doubler tes chances au tirage !
+            </div>
+            <form onsubmit="submitVote(event)">
+                <input type="text" name="Nom" placeholder="Nom et Prénom" required>
+                <input type="email" name="Email" placeholder="Email" required>
+                <textarea name="Avis" placeholder="Ton avis sur le rendu saveur..."></textarea>
+                <button type="submit" class="submit-btn">Valider mon vote</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="reglementModal" class="modal">
+        <div class="modal-content" style="text-align: left; max-height: 80vh; overflow-y: auto;">
+            <h2 style="font-family:'LeagueGothic'; color:var(--orange-lmdv); font-size:2.5rem;">RÈGLEMENT DU JEU</h2>
+            <p style="font-size: 0.85rem;">Organisateur : Réseau La Maison du Vapoteur...</p>
+            <button class="submit-btn" onclick="toggleModal('reglementModal', false)">RETOUR AU VOTE</button>
+        </div>
+    </div>
+
+    <script>
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzL5r9y_WvD2H0l-W-9l3G9-9Y-9Y-9Y-9Y/exec"; // Remplacer par votre lien complet
+
+        let currentChoice = "";
+        function toggleModal(id, show) { document.getElementById(id).style.display = show ? 'flex' : 'none'; }
+        function openVote(choice) { currentChoice = choice; document.getElementById('voteTitle').innerText = "VOTE POUR " + choice; toggleModal('voteModal', true); }
+
+        async function submitVote(event) {
+            event.preventDefault();
+            const btn = event.target.querySelector('.submit-btn');
+            btn.innerText = "ENVOI..."; btn.disabled = true;
+
+            const formData = new FormData(event.target);
+            formData.append("Choix", currentChoice);
+
+            try {
+                await fetch(SCRIPT_URL, { method: 'POST', body: formData, mode: 'no-cors' });
+                alert("Merci ! Ton vote a été enregistré.");
+                toggleModal('voteModal', false);
+                event.target.reset();
+            } catch (e) {
+                alert("Erreur de connexion.");
+            } finally {
+                btn.innerText = "Valider mon vote"; btn.disabled = false;
+            }
+        }
+
+        window.onclick = function(e) { if (e.target.className === 'modal') toggleModal(e.target.id, false); }
+    </script>
+</body>
+</html>
